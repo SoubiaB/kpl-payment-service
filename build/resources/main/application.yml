@@ -1,0 +1,20 @@
+server:
+ port: 8080
+
+
+spring:
+  application:
+    name: KPL-Payment-Service
+  data:
+   mongodb:
+    database: KPL_Payment
+    uri: mongodb://localhost:27017
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          realm: ${KEY_CLOCK_JWT_REALM_NAME:aekyam-auth}
+          auth-server: ${KEY_CLOAK_AUTH_SERVER:https://iam.acuverinnovation.com}
+          issuer-uri: ${spring.security.oauth2.resourceserver.jwt.auth-server}/realms/${spring.security.oauth2.resourceserver.jwt.realm}
+          jwk-set-uri: ${spring.security.oauth2.resourceserver.jwt.issuer-uri}/protocol/openid-connect/certs
+
